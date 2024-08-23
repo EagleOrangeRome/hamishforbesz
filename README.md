@@ -1,5 +1,5 @@
 # DELTA
-Db(D) Endpoint(E) Latency(L) Testing(T) Ammeter(A)
+## Db(D) Endpoint(E) Latency(L) Testing(T) Ammeter(A)
 
 DELTA is a tool to test real-world latency against a remote database using execution of a query and calculating the network return time. The function 'measure_latency_oracle' uses the cx_Oracle package to connect to the Oracle database and execute a single query per request. The function uses the time module to measure the time it takes to execute the query, fetch the results, and close the connection. The function then calculates the latency of each request and the average latency of all requests.
 
@@ -14,11 +14,11 @@ $ cd DELTA
 $ sudo pip3 install -r requirements.txt
 
 # Test Oracle Latency 
-  ## Non-Autonomous Oracle DB ##
+  ## Autonomous DB ##
   #### python3 main.py oracle <num_of_requests> <username> <password> 'hostname:portnumber/servicename' "SQL QUERY"
   $ python3 main.py oracle 10 admin YourP@ssw0rd1234#  '(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=******.adb.ap-melbourne-1.oraclecloud.com))(connect_data=(service_name=*********_testdelta_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))' "SELECT 1 from DUAL"
   
-  ## Oracle Autonomous DB ##
+  ## Non-Autonomous DB ##
   #### python3 main.py oracle <num_of_requests> <username> <password> 'connectingstring' "SQL QUERY"
   $ python3 main.py oracle 10 admin YourP@ssw0rd '10.10.1.10:1521/orcldev' "SELECT 1 from DUAL"
 
