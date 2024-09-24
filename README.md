@@ -26,4 +26,7 @@ $ sudo pip3 install -r requirements.txt
   $ python3 main.py oracle 10 admin YourP@ssw0rd '10.10.1.10:1521/orcldev' "SELECT 1 from DUAL"
 
 # Test MySQL Latency
+  ### python3 main.py mysql <num_of_requests> <username> <password> <hostname> <portnumber> <databasename> "SQL QUERY"
+  python3 main.py mysql 10 admin YourP@ssw0rd mysqldemo.********.ap-southeast-2.rds.amazonaws.com 3306 demo "SELECT 1"
+
 
