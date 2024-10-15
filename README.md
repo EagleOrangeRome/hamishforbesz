@@ -10,7 +10,7 @@ DELTA is a cloud tool to test real-world latency against a remote database endpo
 Network tools like ping ,iperf or tcpping can only give you network based latency which does not always translate well to an application running those queries on a remote database. 
 
 
-DELTA uses Python client for Oracle, MySQL to run a query like “SELECT 1” and calculates network return time in seconds milliseconds
+DELTA uses Python client for Oracle, MySQL to run a query like “SELECT 1”. You can specific the number of executions of the query and DELTA calculates the average network return time ifor each execution of the query on the remote database.
 
 The function 'measure_latency_oracle' uses the cx_Oracle package to connect to the Oracle database and execute a single query per request. The function uses the time module to measure the time it takes to execute the query, fetch the results, and close the connection. The function then calculates the latency of each request and the average latency of all requests.
 
