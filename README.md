@@ -16,6 +16,17 @@ The function 'measure_latency_oracle' uses the cx_Oracle package to connect to t
 
 The function opens a new connection for every request and closes it after fetching the results, which will measure the time it takes to execute the query, transfer the data over the network, and close the connection. The query parameter is passed to the function, allowing you to test the performance of the database with different queries. The same logic applies to the functions of  mysql and postgres(COMING SOON)
 
+## Databases Supported
+- OCI Autonomous Database
+- OCI VMDB
+- OCI Exadata Cloud Service
+- Oracle Database On-Premise
+- Amazon RDS Oracle
+- OCI MySQL Database Service
+- OCI MySQL Heatwave
+- Amazon RDS MySQL
+- Amazon RDS Aurora MySQL
+
 # Deployment
 
 $ git clone https://github.com/shadabshaukat/DELTA.git
