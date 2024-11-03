@@ -7,7 +7,7 @@
 DELTA is a cloud tool to test real-world latency against a remote database endpoint using execution of a query and calculating the network return time.
 
 
-Network tools like ping ,iperf or tcpping can only give you network based latency which does not always translate well to an application running those queries on a remote database. 
+Network tools like ping ,iperf or tcp ping can only give you network based latency which does not always translate well to an application running those queries on a remote database. 
 
 
 DELTA uses Python client for Oracle, MySQL to run a query like “SELECT 1”. You can specific the number of executions of the query and DELTA calculates the average network return time ifor each execution of the query on the remote database.
