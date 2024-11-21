@@ -14,11 +14,12 @@
 
 🐍 DELTA uses Python client for Oracle, MySQL to run a query like “SELECT 1”. You can specific the number of executions of the query and DELTA calculates the average network return time ifor each execution of the query on the remote database.
 
+## How it works
 The function 'measure_latency_oracle' uses the cx_Oracle package to connect to the Oracle database and execute a single query per request. The function uses the time module to measure the time it takes to execute the query, fetch the results, and close the connection. The function then calculates the latency of each request and the average latency of all requests.
 
 The function opens a new connection for every request and closes it after fetching the results, which will measure the time it takes to execute the query, transfer the data over the network, and close the connection. The query parameter is passed to the function, allowing you to test the performance of the database with different queries. The same logic applies to the functions of  mysql and postgres(COMING SOON)
 
-🔌 Databases Supported
+🔌 Databases Supported :
 
 - Amazon RDS Oracle
 
