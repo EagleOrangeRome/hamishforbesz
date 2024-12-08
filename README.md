@@ -51,14 +51,16 @@ $ sudo pip3 install -r requirements.txt
 # Test Oracle Latency 
   ## Autonomous Oracle DB ##
   $ python3 main.py oracle <num_of_requests> <username> <password> 'hostname:portnumber/servicename' "SQL QUERY"
-  $ python3 main.py oracle 10 admin YourP@ssw0rd1234#  '(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=******.adb.ap-melbourne-1.oraclecloud.com))(connect_data=(service_name=*********_testdelta_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))' "SELECT 1 from DUAL"
+  
+$ python3 main.py oracle 10 admin YourP@ssw0rd1234#  '(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=******.adb.ap-melbourne-1.oraclecloud.com))(connect_data=(service_name=*********_testdelta_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))' "SELECT 1 from DUAL"
   
   <img width="1507" alt="Screen Shot 2023-01-20 at 8 52 45 pm" src="https://user-images.githubusercontent.com/39692236/213666821-45660d3e-5539-4bec-be36-9bdc9ae8360c.png">
 
   
   ## Non-Autonomous Oracle DB ##
   $ python3 main.py oracle <num_of_requests> <username> <password> 'connectingstring' "SQL QUERY"
-  $ python3 main.py oracle 10 admin YourP@ssw0rd '10.10.1.10:1521/orcldev' "SELECT 1 from DUAL"
+  
+$ python3 main.py oracle 10 admin YourP@ssw0rd '10.10.1.10:1521/orcldev' "SELECT 1 from DUAL"
   
   <img width="1504" alt="Screen Shot 2023-01-20 at 8 50 53 pm" src="https://user-images.githubusercontent.com/39692236/213666852-c61c8f26-b12d-4c00-9a2b-75401b67d517.png">
 
