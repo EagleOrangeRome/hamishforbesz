@@ -67,7 +67,8 @@ $ python3 main.py oracle 10 admin YourP@ssw0rd '10.10.1.10:1521/orcldev' "SELECT
 
 # Test MySQL Latency
   $ python3 main.py mysql <num_of_requests> <username> <password> <hostname> <portnumber> <databasename> "SQL QUERY"
-  $ python3 main.py mysql 10 admin YourP@ssw0rd mysqldemo.********.ap-southeast-2.rds.amazonaws.com 3306 demo "SELECT 1"
+  
+$ python3 main.py mysql 10 admin YourP@ssw0rd mysqldemo.********.ap-southeast-2.rds.amazonaws.com 3306 demo "SELECT 1"
   
   
 <img width="1509" alt="Screen Shot 2023-01-20 at 8 49 25 pm" src="https://user-images.githubusercontent.com/39692236/213666881-79be4f8b-de7d-47b6-84ed-6a57c6f48941.png">
