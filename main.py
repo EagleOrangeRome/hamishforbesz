@@ -1,6 +1,7 @@
 import sys
 import cx_Oracle
 import pymysql
+import psycopg2
 import time
 
 ##############################################################
@@ -41,7 +42,12 @@ import time
 #Average Latency in Seconds: 0.18985347747802733
 #Average Latency in Milliseconds: 189.85347747802734
 #Successful requests:  10
+#
+### Postgres Database ###
 ##
+# python3 main.py postgres 1 postgres YourP@ssw0rd1234#_ database-1.*********.ap-southeast-2.rds.amazonaws.com 5432 demo "SELECT 1"
+#
+##############################################################
 
 def measure_latency_oracle(user,password,dsn,num_requests,query):
     total_latency = 0
@@ -122,7 +128,48 @@ def measure_latency_mysql(user,password,host,port,database,num_requests,query):
     else:
         print("No Successful requests were made, Error List: ", error_list)
 
-if len(sys.argv) < 3:
+
+def measure_latency_postgres(user, password, host, port, dbname, num_requests, query):
+    total_latency = 0
+    success_count = 0
+    error_count = 0
+    error_list = []
+    num_requests = int(num_requests)
+    for i in range(num_requests):
+        try:
+            # Connect to Postgres
+            start_time = time.time()
+            connection = psycopg2.connect(user=user, password=password, host=host, port=port, dbname=dbname)
+            cursor = connection.cursor()
+            cursor.execute(query)
+            data = cursor.fetchall()
+            end_time = time.time()
+            connection.close()
+
+            # Calculate the latency
+            latency = end_time - start_time
+            total_latency += latency
+            success_count += 1
+        except psycopg2.Error as e:
+            print("Cannot connect to Postgres")
+            error_count += 1
+            error_list.append(e)
+    if success_count > 0:
+        avg_latency = total_latency / success_count
+        # Print the average latency
+        print("## Postgres Latency ##")
+        print("Average Latency in Seconds:", avg_latency)
+        print("Average Latency in Milliseconds:", avg_latency*1000)
+        print("Successful requests: ", success_count)
+        if error_count > 0:
+            print("Unsuccessful requests: ", error_count)
+            print("Error List: ", error_list)
+        return avg_latency
+    else:
+        print("No Successful requests were made, Error List: ", error_list)
+
+
+if len(sys.argv) < 4:
     print("Invalid number of arguments passed")
 else:
     db_type = sys.argv[1]
@@ -141,5 +188,13 @@ else:
         database = sys.argv[7]
         query = sys.argv[8]
         measure_latency_mysql(user,password,host,port,database,num_requests,query)
+    elif db_type == "postgres":
+        user = sys.argv[3]
+        password = sys.argv[4]
+        host = sys.argv[5]
+        port = sys.argv[6]
+        database = sys.argv[7]
+        query = sys.argv[8]
+        measure_latency_postgres(user,password,host,port,database,num_requests,query)
     else:
         print("Invalid db_type argument passed")
