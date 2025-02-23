@@ -3,6 +3,8 @@
 
 📣 Excited to announce a new tool to calculate Cloud Database endpoint latency using SQL. Launching DELTA (DB Endpoint Latency Testing Ammeter)
 
+DELTA is a tool to test real-world latency against a remote database using execution of a query and calculating the network return time. The tool has functions for Oracle, MySQL and Postgres databases.
+
 
 ![Delta_Ammeter](https://user-images.githubusercontent.com/39692236/213663909-24aaf0cd-8abc-429b-811d-25303aa7063e.png)
 
@@ -50,7 +52,9 @@ Postgres :
 - Amazon RDS Aurora Postgrea
 
 
-# Deployment
+# Installation
+
+To install the required packages for DELTA, run the following commands:
 
 $ git clone https://github.com/shadabshaukat/DELTA.git
 
@@ -58,11 +62,15 @@ $ cd DELTA
 
 $ sudo pip3 install -r requirements.txt
 
-# Test Oracle Latency 
+# Usage
   ## Autonomous Oracle DB ##
   $ python3 main.py oracle <num_of_requests> <username> <password> 'hostname:portnumber/servicename' "SQL QUERY"
   
-$ python3 main.py oracle 10 admin YourP@ssw0rd1234#  '(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=******.adb.ap-melbourne-1.oraclecloud.com))(connect_data=(service_name=*********_testdelta_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))' "SELECT 1 from DUAL"
+eg: python3 main.py oracle 10 admin YourP@ssw0rd1234#  '(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=******.adb.ap-melbourne-1.oraclecloud.com))(connect_data=(service_name=*********_testdelta_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))' "SELECT 1 from DUAL"
+ 
+ ### Note
+
+In case of autonomous database, the connecting string can be found in OCI Console > Autonomous Database > DB Connection .
   
   <img width="1507" alt="Screen Shot 2023-01-20 at 8 52 45 pm" src="https://user-images.githubusercontent.com/39692236/213666821-45660d3e-5539-4bec-be36-9bdc9ae8360c.png">
 
@@ -70,24 +78,37 @@ $ python3 main.py oracle 10 admin YourP@ssw0rd1234#  '(description= (retry_count
   ## Non-Autonomous Oracle DB ##
   $ python3 main.py oracle <num_of_requests> <username> <password> 'connectingstring' "SQL QUERY"
   
-$ python3 main.py oracle 10 admin YourP@ssw0rd '10.10.1.10:1521/orcldev' "SELECT 1 from DUAL"
+eg: python3 main.py oracle 10 admin YourP@ssw0rd '10.10.1.10:1521/orcldev' "SELECT 1 from DUAL"
   
   <img width="1504" alt="Screen Shot 2023-01-20 at 8 50 53 pm" src="https://user-images.githubusercontent.com/39692236/213666852-c61c8f26-b12d-4c00-9a2b-75401b67d517.png">
 
 
-# Test MySQL Latency
-  $ python3 main.py mysql <num_of_requests> <username> <password> <host> <port> <databasename> "SQL QUERY"
-  
-$ python3 main.py mysql 10 admin YourP@ssw0rd mysqldemo.********.ap-southeast-2.rds.amazonaws.com 3306 demo "SELECT 1"
+# Test MySQL Latency  
+eg: python3 main.py mysql 10 admin YourP@ssw0rd mysqldemo.********.ap-southeast-2.rds.amazonaws.com 3306 demo "SELECT 1"
   
   
 <img width="1509" alt="Screen Shot 2023-01-20 at 8 49 25 pm" src="https://user-images.githubusercontent.com/39692236/213666881-79be4f8b-de7d-47b6-84ed-6a57c6f48941.png">
 
-# Test Postgres Latency
-  $ python3 main.py postgres <num_of_requests> <username> <password> <host> <port> <databasename> "SQL QUERY"
-  
-$ python3 main.py postgres 1 postgres YourP@ssw0rd1234#_ database-1.********.ap-southeast-2.rds.amazonaws.com 5432 demo "SELECT 1"
+# Test Postgres Latency  
+eg: python3 main.py postgres 1 postgres YourP@ssw0rd1234#_ database-1.********.ap-southeast-2.rds.amazonaws.com 5432 demo "SELECT 1"
   
   <img width="1498" alt="Screen Shot 2023-01-21 at 3 01 07 am" src="https://user-images.githubusercontent.com/39692236/213746779-bdb07df3-f2f2-4d7e-8679-89db5dd4779d.png">
 
+# Function Definitions
+measure_latency_oracle(user,password,dsn,num_requests,query)
 
+This function is used to measure the latency of an Oracle database. It takes in the following parameters:
+
+    user: The username to connect to the Oracle database.
+    password: The password to connect to the Oracle database.
+    dsn: The hostname and portnumber/servicename of the Oracle database.
+    num_requests: The number of requests to be made to the database.
+    query: The SQL query to be executed on the database.
+
+It returns the average latency in seconds and milliseconds, the number of successful requests and any errors that occurred during the test. 
+ 
+# Contributing
+
+    Fork it (https://github.com/your-github-username/DELTA/fork)
+    Create your feature branch (git checkout -b feature/fooBar)
+    Commit your changes (git commit -am 'Add some fooBar')
