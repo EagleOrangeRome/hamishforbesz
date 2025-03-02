@@ -51,10 +51,16 @@ Postgres :
 
 - Amazon RDS Aurora Postgrea
 
+# Requirements
+
+    Python 3
+    cx_Oracle
+    psycopg2
+    pymysql
 
 # Installation
 
-To install the required packages for DELTA, run the following commands:
+You can install the packages individually or all together using the requirements.txt file 
 
 $ git clone https://github.com/shadabshaukat/DELTA.git
 
@@ -62,7 +68,25 @@ $ cd DELTA
 
 $ sudo pip3 install -r requirements.txt
 
+OR
+
+$ pip3 install cx_Oracle
+$ pip3 install psycopg2-binary
+$ pip3 install pymysql
+
 # Usage
+
+The tool can be run using the command line. You will need to provide the following arguments:
+
+    dbtype : The type of database you want to test. Can be 'oracle', 'mysql' or 'postgres'
+    num_of_requests : The number of requests you want to make to the database
+    username : The username to connect to the database
+    password : The password to connect to the database
+    hostname : The hostname or IP address of the database
+    portnumber : The port number of the database
+    databasename : The name of the database
+    "SQL QUERY" : The SQL query you want to test
+    
   ## Autonomous Oracle DB ##
   $ python3 main.py oracle <num_of_requests> <username> <password> 'hostname:portnumber/servicename' "SQL QUERY"
   
