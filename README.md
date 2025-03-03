@@ -3,7 +3,7 @@
 
 📣 Excited to announce a new tool to calculate Cloud Database endpoint latency using SQL. Launching DELTA (DB Endpoint Latency Testing Ammeter)
 
-DELTA is a tool to test real-world latency against a remote database using execution of a query and calculating the network return time. The tool has functions for Oracle, MySQL and Postgres databases.
+DELTA is a tool to test real-world latency against a remote database using execution of a query and calculating the network return time. The tool provides functions to test latency of Oracle, MySQL and Postgres databases. The tool uses the cx_Oracle, psycopg2 and pymysql packages to connect to the respective databases and execute a single query per request (you can specify multiple requests as well). The tool uses the time module to measure the time it takes to execute the query, fetch the results, and close the connection. The tool then calculates the latency of each request and the average latency of all requests.
 
 
 ![Delta_Ammeter](https://user-images.githubusercontent.com/39692236/213663909-24aaf0cd-8abc-429b-811d-25303aa7063e.png)
