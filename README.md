@@ -45,12 +45,16 @@ The function 'measure_latency_oracle' uses the cx_Oracle package to connect to t
 
 - OCI MySQL Heatwave
 
+- On-premise MySQL
+
 
 📌 Postgres :
 
 - Amazon RDS Postgres
 
 - Amazon RDS Aurora Postgres
+
+- On-premise Postgres
 
 # Requirements
 
