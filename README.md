@@ -58,9 +58,9 @@ The function 'measure_latency_oracle' uses the cx_Oracle package to connect to t
 
 # Requirements
 
-    Python 3
+    Python 3 (Minimum 3.7)
     cx_Oracle
-    psycopg2
+    psycopg2-binary
     pymysql
 
 # Installation
