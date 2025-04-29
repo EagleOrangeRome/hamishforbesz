@@ -117,8 +117,8 @@ eg: python3 main.py oracle 10 admin YourP@ssw0rd '10.10.1.10:1521/orcldev' "SELE
 
 # MySQL   
 eg: python3 main.py mysql 10 admin YourP@ssw0rd mysqldemo.********.ap-southeast-2.rds.amazonaws.com 3306 demo "SELECT 1"
-  
-  
+
+    
 <img width="1509" alt="Screen Shot 2023-01-20 at 8 49 25 pm" src="https://user-images.githubusercontent.com/39692236/213666881-79be4f8b-de7d-47b6-84ed-6a57c6f48941.png">
 
 # PostgreSQL  
@@ -138,9 +138,41 @@ This function is used to measure the latency of an Oracle database. It takes in 
     query: The SQL query to be executed on the database.
 
 It returns the average latency in seconds and milliseconds, the number of successful requests and any errors that occurred during the test. 
+
+# Deploy with Docker
+
+```
+$ git clone 
+
+$ cd DELTA/
+
+$ docker build -t delta .
+
+$ docker run -it delta python3 main.py \
+  oracle 1 redis YourP@ssw0rd  \
+  'orcl11g-scan.sub06091142401.demovcn.oraclevcn.com:1521/orcl11g_mel1wc.sub06091142401.demovcn.oraclevcn.com' \
+  "SELECT 1 from DUAL" 
+
+$ docker run -it delta python3 main.py \
+postgres 1 postgres YourP@ssw0rd  \
+database-1.ctvj2nl8rg0a.ap-southeast-2.rds.amazonaws.com 5432 demo "SELECT 1"
+
+$ docker run -it delta python3 main.py \
+mysql 1 admin YourP@ssw0rd  \
+mysqldemo.ctvj2nl8rg0a.ap-southeast-2.rds.amazonaws.com 3306 demo \
+"SELECT 1"
+
+$ docker run -it delta python3 main.py \
+oracle 1 admin YourP@ssw0rd x  \
+'(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=bjeszb85.adb.ap-melbourne-1.oraclecloud.com))(connect_data=(service_name=g9b8049aad9c64c_testdelta_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))' \
+"SELECT 1 from DUAL"
+
+```
  
 # Contributing
 
     Fork it (https://github.com/your-github-username/DELTA/fork)
     Create your feature branch (git checkout -b feature/fooBar)
     Commit your changes (git commit -am 'Add some fooBar')
+
+
