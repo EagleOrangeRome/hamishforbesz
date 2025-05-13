@@ -139,10 +139,10 @@ This function is used to measure the latency of an Oracle database. It takes in 
 
 It returns the average latency in seconds and milliseconds, the number of successful requests and any errors that occurred during the test. 
 
-# Deploy with Docker
+# Deploy Delta as a Container with Docker
 
 ```
-$ git clone 
+$ git clone https://github.com/shadabshaukat/DELTA.git
 
 $ cd DELTA/
 
@@ -150,21 +150,21 @@ $ docker build -t delta .
 
 $ docker run -it delta python3 main.py \
   oracle 1 redis YourP@ssw0rd  \
-  'orcl11g-scan.sub06091142401.demovcn.oraclevcn.com:1521/orcl11g_mel1wc.sub06091142401.demovcn.oraclevcn.com' \
+  'orcl11g-scan.********.demovcn.oraclevcn.com:1521/orcl11g.******.demovcn.oraclevcn.com' \
   "SELECT 1 from DUAL" 
 
 $ docker run -it delta python3 main.py \
 postgres 1 postgres YourP@ssw0rd  \
-database-1.ctvj2nl8rg0a.ap-southeast-2.rds.amazonaws.com 5432 demo "SELECT 1"
+database-1.******ap-southeast-2.rds.amazonaws.com 5432 demo "SELECT 1"
 
 $ docker run -it delta python3 main.py \
 mysql 1 admin YourP@ssw0rd  \
-mysqldemo.ctvj2nl8rg0a.ap-southeast-2.rds.amazonaws.com 3306 demo \
+mysqldemo.c******ap-southeast-2.rds.amazonaws.com 3306 demo \
 "SELECT 1"
 
 $ docker run -it delta python3 main.py \
 oracle 1 admin YourP@ssw0rd x  \
-'(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=bjeszb85.adb.ap-melbourne-1.oraclecloud.com))(connect_data=(service_name=g9b8049aad9c64c_testdelta_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))' \
+'(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=b********.adb.ap-melbourne-1.oraclecloud.com))(connect_data=(service_name=g**********_testdelta_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))' \
 "SELECT 1 from DUAL"
 
 ```
