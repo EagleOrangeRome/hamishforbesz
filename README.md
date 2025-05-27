@@ -69,6 +69,7 @@ The function 'measure_latency_oracle' uses the cx_Oracle package to connect to t
 
 You can install the packages individually or all together using the requirements.txt file 
 
+```
 $ git clone https://github.com/shadabshaukat/DELTA.git
 
 $ cd DELTA
@@ -82,6 +83,7 @@ $ pip3 install cx_Oracle
 $ pip3 install psycopg2-binary
 
 $ pip3 install pymysql
+```
 
 
 # Installation with Docker
