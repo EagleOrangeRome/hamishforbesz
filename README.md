@@ -110,7 +110,7 @@ mysqldemo.c******ap-southeast-2.rds.amazonaws.com 3306 demo \
 "SELECT 1"
 
 $ docker run -it delta python3 main.py \
-oracle 1 admin YourP@ssw0rd x  \
+oracle 1 admin YourP@ssw0rd  \
 '(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=b********.adb.ap-melbourne-1.oraclecloud.com))(connect_data=(service_name=g**********_testdelta_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))' \
 "SELECT 1 from DUAL"
 
