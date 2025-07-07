@@ -23,4 +23,4 @@ ENV LD_LIBRARY_PATH /usr/lib/oracle/19.10/client64/lib/
 ADD main.py .
 COPY main.py ./main.py
 
-CMD ["python3", "./main.py"
+CMD ["python3", "./main.py"]
