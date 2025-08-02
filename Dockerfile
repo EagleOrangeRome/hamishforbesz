@@ -12,7 +12,9 @@ RUN yum install -y postgresql-devel
 RUN yum install -y gcc \
     && yum install -y libaio-devel
 
-RUN pip3 install cx_Oracle
+RUN pip3 install setuptools_rust
+RUN pip3 install --upgrade pip
+RUN pip3 install oracledb
 RUN pip3 install pymysql
 RUN pip3 install psycopg2-binary
 
