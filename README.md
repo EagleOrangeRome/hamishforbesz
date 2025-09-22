@@ -110,8 +110,8 @@ mysqldemo.c******ap-southeast-2.rds.amazonaws.com 3306 demo \
 "SELECT 1"
 
 $ docker run -it delta python3 main.py \
-oracle 1 admin YourP@ssw0rd  \
-'(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=b********.adb.ap-melbourne-1.oraclecloud.com))(connect_data=(service_name=g**********_testdelta_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))' \
+autonomous 1 admin YourP@ssw0rd \
+'(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=*******.adb.ap-melbourne-1.oraclecloud.com))(connect_data=(service_name=********_testdelta_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))' \
 "SELECT 1 from DUAL"
 
 $ docker run -it delta python3 -c "import cx_Oracle; print(cx_Oracle.version)"
@@ -135,20 +135,18 @@ The tool can be run using the command line. You will need to provide the followi
     "SQL QUERY" : The SQL query you want to test
     
   # Oracle Autonomous Database 
-  $ python3 main.py oracle <num_of_requests> <username> <password> 'hostname:portnumber/servicename' "SQL QUERY"
+  $ python3 main.py autonomous <num_of_requests> <username> <password> 'connectstring' "SQL QUERY"
   
-eg: python3 main.py oracle 10 admin YourP@ssw0rd1234#  '(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=******.adb.ap-melbourne-1.oraclecloud.com))(connect_data=(service_name=*********_testdelta_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))' "SELECT 1 from DUAL"
+eg: python3 main.py autonomous 10 admin YourP@ssw0rd1234#  '(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=******.adb.ap-melbourne-1.oraclecloud.com))(connect_data=(service_name=*********_testdelta_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))' "SELECT 1 from DUAL"
  
  ### Note
 
 - In case of autonomous database, the connecting string can be found in OCI Console > Autonomous Database > DB Connection
 - Currently only non mTLS connections are supported for Autonomous database. mTLS with wallet is a roadmap item
   
-  <img width="1507" alt="Screen Shot 2023-01-20 at 8 52 45 pm" src="https://user-images.githubusercontent.com/39692236/213666821-45660d3e-5539-4bec-be36-9bdc9ae8360c.png">
-
   
-  # Oracle Database
-  $ python3 main.py oracle <num_of_requests> <username> <password> 'connectingstring' "SQL QUERY"
+  # Normal Oracle Database
+  $ python3 main.py oracle <num_of_requests> <username> <password> 'hostname:portnumber/servicename' "SQL QUERY"
   
 eg: python3 main.py oracle 10 admin YourP@ssw0rd '10.10.1.10:1521/orcldev' "SELECT 1 from DUAL"
   
