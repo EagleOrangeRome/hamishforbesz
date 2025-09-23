@@ -172,7 +172,7 @@ def measure_latency_postgres(user, password, host, port, dbname, num_requests, q
         print("No Successful requests were made, Error List: ", error_list)
 
 
-if len(sys.argv) < 4:
+if len(sys.argv) < 5:
     print("Invalid number of arguments passed")
 else:
     db_type = sys.argv[1]
