@@ -183,7 +183,7 @@ else:
         dsn = sys.argv[5]
         query = sys.argv[6]
         measure_latency_oracle(user,password,dsn,num_requests,query)
-    if db_type == "autonomous":
+    elif db_type == "autonomous":
         user = sys.argv[3]
         password = sys.argv[4]
         dsn = sys.argv[5]
