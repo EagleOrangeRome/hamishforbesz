@@ -131,7 +131,7 @@ $ docker run -it delta ls /usr/lib/oracle
 
 The tool can be run using the command line. You will need to provide the following arguments:
 
-    dbtype : The type of database you want to test. Can be 'oracle', 'mysql' or 'postgres'
+    dbtype : The type of database you want to test. Can be 'oracle', 'autonomous', 'mysql' or 'postgres'
     num_of_requests : The number of requests you want to make to the database
     username : The username to connect to the database
     password : The password to connect to the database
