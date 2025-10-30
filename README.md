@@ -100,32 +100,40 @@ $ docker build -t delta .
 - Normal Oracle Database Latency Check
 $ docker run -it delta python3 main.py \
   oracle \
-  1 redis YourP@ssw0rd  \
+  1 \
+  redis \
+  YourP@ssw0rd  \
   'orcl11g-scan.********.demovcn.oraclevcn.com:1521/orcl11g.******.demovcn.oraclevcn.com' \
   "SELECT 1 from DUAL" 
 
 - Postgres Database Latency Check
 $ docker run -it delta python3 main.py \
 postgres \
-1 postgres YourP@ssw0rd  \
+1 \
+postgres \
+YourP@ssw0rd  \
 database-1.******ap-southeast-2.rds.amazonaws.com 5432 demo "SELECT 1"
 
 - MySQL Database Latency Check
 $ docker run -it delta python3 main.py \
 mysql \
-1 admin YourP@ssw0rd  \
+1 \
+admin \
+YourP@ssw0rd  \
 mysqldemo.c******ap-southeast-2.rds.amazonaws.com 3306 demo \
 "SELECT 1"
 
 - Autonomous Oracle Database Latency Check
 $ docker run -it delta python3 main.py \
 autonomous \
-1 admin YourP@ssw0rd \
+1 \
+admin \
+YourP@ssw0rd \
 '(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=*******.adb.ap-melbourne-1.oraclecloud.com))(connect_data=(service_name=********_testdelta_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))' \
 "SELECT 1 from DUAL"
 
 - Check Versions
-$ docker run -it delta python3 -c "import cx_Oracle; print(cx_Oracle.version)"
+$ docker run -it delta python3 -c "import oracledb; print(oracledb.version)"
 8.3.0
 $ docker run -it delta ls /usr/lib/oracle
 19.10
