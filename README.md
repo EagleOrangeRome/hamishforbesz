@@ -134,7 +134,8 @@ YourP@ssw0rd \
 
 - Check Versions
 $ docker run -it delta python3 -c "import oracledb; print(oracledb.version)"
-8.3.0
+1.2.2
+
 $ docker run -it delta ls /usr/lib/oracle
 19.10
 
