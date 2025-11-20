@@ -1,21 +1,22 @@
-FROM oraclelinux:7-slim
+FROM ghcr.io/oracle/oraclelinux:8
 
-RUN yum install -y oracle-release-el7 \
-    && yum-config-manager --enable ol7_oracle_instantclient \
+RUN yum install -y oracle-release-el8 \
+    && yum-config-manager --enable ol8_oracle_instantclient \
     && yum install -y oracle-instantclient19.10-basic
 
-RUN yum install -y python3
 
-RUN yum install -y python3-devel
+RUN dnf -y module disable python36 && \
+    dnf -y module enable python39 && \
+    dnf -y install python39 python39-pip python39-setuptools python39-wheel && \
+    rm -rf /var/cache/dnf
+
 RUN yum install -y postgresql-devel
 
 RUN yum install -y gcc \
     && yum install -y libaio-devel
 
-RUN pip3 install setuptools_rust
-RUN pip3 install --upgrade pip
-RUN pip3 install oracledb
 RUN pip3 install pymysql
+RUN pip3 install oracledb
 RUN pip3 install psycopg2-binary
 
 
