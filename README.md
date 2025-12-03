@@ -155,9 +155,8 @@ The tool can be run using the command line. You will need to provide the followi
     "SQL QUERY" : The SQL query you want to test
     
   # Oracle Autonomous Database 
-  $ python3 main.py autonomous <num_of_requests> <username> <password> 'connectstring' "SQL QUERY"
   
-eg: python3 main.py autonomous 10 admin YourP@ssw0rd1234#  '(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=******.adb.ap-melbourne-1.oraclecloud.com))(connect_data=(service_name=*********_testdelta_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))' "SELECT 1 from DUAL"
+
  
  ### Note
 
@@ -166,23 +165,14 @@ eg: python3 main.py autonomous 10 admin YourP@ssw0rd1234#  '(description= (retry
   
   
   # Normal Oracle Database
-  $ python3 main.py oracle <num_of_requests> <username> <password> 'hostname:portnumber/servicename' "SQL QUERY"
-  
-eg: python3 main.py oracle 10 admin YourP@ssw0rd '10.10.1.10:1521/orcldev' "SELECT 1 from DUAL"
-  
-  <img width="1504" alt="Screen Shot 2023-01-20 at 8 50 53 pm" src="https://user-images.githubusercontent.com/39692236/213666852-c61c8f26-b12d-4c00-9a2b-75401b67d517.png">
+
 
 
 # MySQL   
-eg: python3 main.py mysql 10 admin YourP@ssw0rd mysqldemo.********.ap-southeast-2.rds.amazonaws.com 3306 demo "SELECT 1"
 
-    
-<img width="1509" alt="Screen Shot 2023-01-20 at 8 49 25 pm" src="https://user-images.githubusercontent.com/39692236/213666881-79be4f8b-de7d-47b6-84ed-6a57c6f48941.png">
 
 # PostgreSQL  
-eg: python3 main.py postgres 1 postgres YourP@ssw0rd1234#_ database-1.********.ap-southeast-2.rds.amazonaws.com 5432 demo "SELECT 1"
-  
-  <img width="1498" alt="Screen Shot 2023-01-21 at 3 01 07 am" src="https://user-images.githubusercontent.com/39692236/213746779-bdb07df3-f2f2-4d7e-8679-89db5dd4779d.png">
+
 
 # Function Definitions
 measure_latency_oracle(user,password,dsn,num_requests,query)
