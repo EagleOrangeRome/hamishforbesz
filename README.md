@@ -60,14 +60,13 @@ The function 'measure_latency_oracle' uses the cx_Oracle package to connect to t
 
 # Requirements
 
-    Python 3 (Minimum 3.7)
-    cx_Oracle
-    psycopg2-binary
-    pymysql
+   Docker Minimum Version: 20.10.17
 
 # Installation
 
 You can install and run DELTA as a Docker container
+
+Build from source
 
 ```
 $ git clone https://github.com/shadabshaukat/DELTA.git
