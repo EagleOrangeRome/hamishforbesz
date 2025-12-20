@@ -76,63 +76,6 @@ $ cd DELTA/
 $ docker build -t delta .
 ```
 
-Run Autonomous Oracle Database Latency Check
-
-```
-$ docker run -it delta python3 main.py \
-autonomous \
-1 \
-admin \
-YourP@ssw0rd \
-'(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=*******.adb.ap-melbourne-1.oraclecloud.com))(connect_data=(service_name=********_testdelta_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))' \
-"SELECT 1 from DUAL"
-```
-
-Run Normal Oracle Database Latency Check
-
-```
-$ docker run -it delta python3 main.py \
-  oracle \
-  1 \
-  redis \
-  YourP@ssw0rd  \
-  'orcl11g-scan.********.demovcn.oraclevcn.com:1521/orcl11g.******.demovcn.oraclevcn.com' \
-  "SELECT 1 from DUAL" 
-  ```
-
-Run Postgres Database Latency Check
-
-```
-$ docker run -it delta python3 main.py \
-postgres \
-1 \
-postgres \
-YourP@ssw0rd  \
-database-1.******ap-southeast-2.rds.amazonaws.com 5432 demo "SELECT 1"
-```
-
-Run MySQL Database Latency Check
-
-```
-$ docker run -it delta python3 main.py \
-mysql \
-1 \
-admin \
-YourP@ssw0rd  \
-mysqldemo.c******ap-southeast-2.rds.amazonaws.com 3306 demo \
-"SELECT 1"
-```
-
-
-- Check Versions
-$ docker run -it delta python3 -c "import oracledb; print(oracledb.version)"
-1.2.2
-
-$ docker run -it delta ls /usr/lib/oracle
-19.10
-
-```
-
 # Usage
 
 The tool can be run using the command line. You will need to provide the following arguments:
@@ -145,25 +88,72 @@ The tool can be run using the command line. You will need to provide the followi
     portnumber : The port number of the database
     databasename : The name of the database
     "SQL QUERY" : The SQL query you want to test
-    
-  # Oracle Autonomous Database 
-  
 
- 
- ### Note
+## Run Autonomous Oracle Database Latency Check
+### Note
 
 - In case of autonomous database, the connecting string can be found in OCI Console > Autonomous Database > DB Connection
 - Currently only non mTLS connections are supported for Autonomous database. mTLS with wallet is a roadmap item
-  
-  
-  # Normal Oracle Database
+
+```
+$ docker run -it delta python3 main.py \
+autonomous \
+1 \
+admin \
+YourP@ssw0rd \
+'(description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=*******.adb.ap-melbourne-1.oraclecloud.com))(connect_data=(service_name=********_testdelta_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))' \
+"SELECT 1 from DUAL"
+```
+
+## Run Normal Oracle Database Latency Check
+
+```
+$ docker run -it delta python3 main.py \
+  oracle \
+  1 \
+  redis \
+  YourP@ssw0rd  \
+  'orcl11g-scan.********.demovcn.oraclevcn.com:1521/orcl11g.******.demovcn.oraclevcn.com' \
+  "SELECT 1 from DUAL" 
+  ```
+
+## Run Postgres Database Latency Check
+
+```
+$ docker run -it delta python3 main.py \
+postgres \
+1 \
+postgres \
+YourP@ssw0rd  \
+database-1.******ap-southeast-2.rds.amazonaws.com 5432 demo "SELECT 1"
+```
+
+## Run MySQL Database Latency Check
+
+```
+$ docker run -it delta python3 main.py \
+mysql \
+1 \
+admin \
+YourP@ssw0rd  \
+mysqldemo.c******ap-southeast-2.rds.amazonaws.com 3306 demo \
+"SELECT 1"
+```
 
 
+## Check python-oracledb and Oracle Instantclient version
+```
+$ docker run -it delta python3 -c "import oracledb; print(oracledb.version)"
+1.2.2
+```
 
-# MySQL   
+```
+$ docker run -it delta ls /usr/lib/oracle
+19.10
+```
 
 
-# PostgreSQL  
+    
 
 
 # Function Definitions
