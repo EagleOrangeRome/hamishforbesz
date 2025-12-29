@@ -60,7 +60,9 @@ The function 'measure_latency_oracle' uses the cx_Oracle package to connect to t
 
 # Requirements
 
-   Docker Minimum Version: 20.10.17
+```
+Docker Version (Minimum): 20.10.17
+```
 
 # Installation
 
@@ -157,7 +159,7 @@ $ docker run -it delta ls /usr/lib/oracle
 
 
 # Function Definitions
-measure_latency_oracle(user,password,dsn,num_requests,query)
+## measure_latency_oracle(user,password,dsn,num_requests,query)
 
 This function is used to measure the latency of an Oracle database. It takes in the following parameters:
 
@@ -168,6 +170,46 @@ This function is used to measure the latency of an Oracle database. It takes in 
     query: The SQL query to be executed on the database.
 
 It returns the average latency in seconds and milliseconds, the number of successful requests and any errors that occurred during the test. 
+
+## measure_latency_autonomous(user,password,dsn,num_requests,query)
+
+This function is used to measure the latency of an Oracle Autonomous Database with TLS (mTLS currently isn't supported). It takes in the following parameters:
+
+    user: The username to connect to the Autonomous database.
+    password: The password to connect to the Autonomous database.
+    dsn: The connectivity string of the Autonomous database.
+    num_requests: The number of requests to be made to the database.
+    query: The SQL query to be executed on the database.
+
+It returns the average latency in seconds and milliseconds, the number of successful requests and any errors that occurred during the test. 
+
+## measure_latency_mysql(user,password,host,port,database,num_requests,query)
+
+This function is used to measure the latency of a MySQL Database. It takes in the following parameters:
+
+    user: The username to connect to the MySQL database.
+    password: The password to connect to the MySQL database.
+    host : Hostname or IP to connect to the MySQL database
+    port : Port number of the MySQL database
+    database : Database name of the MySQL instance
+    num_requests: The number of requests to be made to the database.
+    query: The SQL query to be executed on the database.
+
+It returns the average latency in seconds and milliseconds, the number of successful requests and any errors that occurred during the test. 
+
+##  measure_latency_postgres(user, password, host, port, dbname, num_requests, query)
+
+This function is used to measure the latency of a Postgres Database. It takes in the following parameters:
+
+    user: The username to connect to the Postgres database.
+    password: The password to connect to the Postgres database.
+    host : Hostname or IP to connect to the Postgres database
+    port : Port number of the Postgres database
+    dbname : Database name of the Postgres instance
+    num_requests: The number of requests to be made to the database.
+    query: The SQL query to be executed on the database.
+
+It returns the average latency in seconds and milliseconds, the number of successful requests and any errors that occurred during the test.
 
  
 # Contributing
