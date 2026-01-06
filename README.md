@@ -91,10 +91,10 @@ The tool can be run using the command line. You will need to provide the followi
     databasename : The name of the database
     "SQL QUERY" : The SQL query you want to test
 
-## Run Autonomous Oracle Database Latency Check
+## Run Autonomous Database Latency Check
 ### Note
 
-- In case of autonomous database, the connecting string can be found in OCI Console > Autonomous Database > DB Connection
+- In case of Oracle Autonomous database, the connecting string can be found in OCI Console > Autonomous Database > DB Connection
 - Currently only non mTLS connections are supported for Autonomous database. mTLS with wallet is a roadmap item
 
 ```
@@ -107,7 +107,7 @@ YourP@ssw0rd \
 "SELECT 1 from DUAL"
 ```
 
-## Run Normal Oracle Database Latency Check
+## Run Oracle Database Latency Check
 
 ```
 $ docker run -it delta python3 main.py \
@@ -119,7 +119,7 @@ $ docker run -it delta python3 main.py \
   "SELECT 1 from DUAL" 
   ```
 
-## Run Postgres Database Latency Check
+## Run Postgres Latency Check
 
 ```
 $ docker run -it delta python3 main.py \
@@ -130,7 +130,7 @@ YourP@ssw0rd  \
 database-1.******ap-southeast-2.rds.amazonaws.com 5432 demo "SELECT 1"
 ```
 
-## Run MySQL Database Latency Check
+## Run MySQL Latency Check
 
 ```
 $ docker run -it delta python3 main.py \
