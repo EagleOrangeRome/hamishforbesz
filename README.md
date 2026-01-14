@@ -75,7 +75,8 @@ $ git clone https://github.com/shadabshaukat/DELTA.git
 
 $ cd DELTA/
 
-$ docker build -t delta .
+$ docker build -t delta . --tag delta  --pull --no-cache --force-rm
+
 ```
 
 # Usage
