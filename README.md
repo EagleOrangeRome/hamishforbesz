@@ -96,7 +96,7 @@ The tool can be run using the command line. You will need to provide the followi
 ### Note
 
 - In case of Oracle Autonomous database, the connecting string can be found in OCI Console > Autonomous Database > DB Connection
-- Currently only non mTLS connections are supported for Autonomous database. mTLS with wallet is a roadmap item
+- Currently only non-mTLS connections are supported. mTLS with wallet should be available soon
 
 ```
 $ docker run -it delta python3 main.py \
@@ -114,7 +114,7 @@ YourP@ssw0rd \
 $ docker run -it delta python3 main.py \
   oracle \
   1 \
-  redis \
+  hr \
   YourP@ssw0rd  \
   'orcl11g-scan.********.demovcn.oraclevcn.com:1521/orcl11g.******.demovcn.oraclevcn.com' \
   "SELECT 1 from DUAL" 
@@ -128,7 +128,9 @@ postgres \
 1 \
 postgres \
 YourP@ssw0rd  \
-database-1.******ap-southeast-2.rds.amazonaws.com 5432 demo "SELECT 1"
+database-1.******ap-southeast-2.rds.amazonaws.com 5432 \
+demo \
+"SELECT 1"
 ```
 
 ## Run MySQL Latency Check
@@ -139,7 +141,8 @@ mysql \
 1 \
 admin \
 YourP@ssw0rd  \
-mysqldemo.c******ap-southeast-2.rds.amazonaws.com 3306 demo \
+mysqldemo.c******ap-southeast-2.rds.amazonaws.com 3306 \
+demo \
 "SELECT 1"
 ```
 
