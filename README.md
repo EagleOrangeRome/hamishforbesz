@@ -71,9 +71,7 @@ You can install and run DELTA as a Docker container
 Build from source
 
 ```
-$ git clone https://github.com/shadabshaukat/DELTA.git
-
-$ cd DELTA/
+$ git clone https://github.com/shadabshaukat/DELTA.git && cd DELTA/
 
 $ docker build -t delta . --tag delta  --pull --no-cache --force-rm
 
