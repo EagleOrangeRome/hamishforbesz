@@ -206,4 +206,4 @@ else:
         query = sys.argv[8]
         measure_latency_postgres(user,password,host,port,database,num_requests,query)
     else:
-        print("Invalid db_type argument passed")
+        print("Invalid dbtype specified. Please enter 'oracle', 'autonomous','mysql', or 'postgres'.")
