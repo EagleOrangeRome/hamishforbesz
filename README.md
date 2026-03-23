@@ -126,7 +126,8 @@ postgres \
 1 \
 postgres \
 YourP@ssw0rd  \
-database-1.******ap-southeast-2.rds.amazonaws.com 5432 \
+database-1.******ap-southeast-2.rds.amazonaws.com \
+5432 \
 demo \
 "SELECT 1"
 ```
@@ -139,7 +140,8 @@ mysql \
 1 \
 admin \
 YourP@ssw0rd  \
-mysqldemo.c******ap-southeast-2.rds.amazonaws.com 3306 \
+mysqldemo.c******ap-southeast-2.rds.amazonaws.com \
+3306 \
 demo \
 "SELECT 1"
 ```
