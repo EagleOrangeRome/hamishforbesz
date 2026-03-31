@@ -61,7 +61,7 @@ The function 'measure_latency_oracle' uses the oracledb package to connect to th
 # Requirements
 
 ```
-Docker Version (Minimum): 20.10.17
+Docker 
 ```
 
 # Installation
