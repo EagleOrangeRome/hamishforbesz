@@ -3,12 +3,14 @@ import oracledb
 import pymysql
 import psycopg2
 import time
+import requests
+requests.packages.urllib3.disable_warnings()
 
 ##############################################################
 #
 # DELTA
 # DB(D)  Endpoint(E)  Latency(L)  Testing(T) Ammeter(A)
-#
+# Bonus! : URL Latency Testing
 ##############################################################
 
 def measure_latency_oracle(user,password,dsn,num_requests,query):
@@ -172,7 +174,43 @@ def measure_latency_postgres(user, password, host, port, dbname, num_requests, q
         print("No Successful requests were made, Error List: ", error_list)
 
 
-if len(sys.argv) < 5:
+
+def measure_latency_url(url, num_requests):
+    num_requests=int(num_requests)
+    total_latency = 0
+    success_count = 0
+    error_count = 0
+    error_list = []
+    for i in range(num_requests):
+        try:
+            start_time = time.time()
+            response = requests.get(url,verify=False)
+            end_time = time.time()
+
+            # Calculate the latency
+            latency = end_time - start_time
+            total_latency += latency
+            success_count += 1
+        except requests.exceptions.RequestException as e:
+            error_count += 1
+            error_list.append(e)
+    if success_count > 0:
+        avg_latency = total_latency / success_count
+        # Print the average latency
+        print("## URL Latency ##")
+        print("Average Latency in Seconds:", avg_latency)
+        print("Average Latency in Milliseconds:", avg_latency*1000)
+        print("Successful requests: ", success_count)
+        if error_count > 0:
+            print("Unsuccessful requests: ", error_count)
+            print("Error List: ", error_list)
+        return avg_latency
+    else:
+        print("No Successful requests were made, Error List: ", error_list)
+
+
+
+if len(sys.argv) <= 0:
     print("Invalid number of arguments passed")
 else:
     db_type = sys.argv[1]
@@ -205,5 +243,8 @@ else:
         database = sys.argv[7]
         query = sys.argv[8]
         measure_latency_postgres(user,password,host,port,database,num_requests,query)
+    elif db_type == "url":
+        url = sys.argv[3]
+        measure_latency_url(url,num_requests)
     else:
-        print("Invalid dbtype specified. Please enter 'oracle', 'autonomous' , 'mysql' or 'postgres'.")
+        print("Invalid dbtype specified. Please enter 'oracle', 'autonomous' , 'mysql' ,  'postgres'  or  'url'.")
