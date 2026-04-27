@@ -15,9 +15,8 @@ RUN yum install -y postgresql-devel
 RUN yum install -y gcc \
     && yum install -y libaio-devel
 
-RUN pip3 install pymysql
-RUN pip3 install oracledb
-RUN pip3 install psycopg2-binary
+ADD requirements.txt .
+RUN pip3 install -r requirements.txt
 
 
 # Set the environment variable for LD_LIBRARY_PATH
