@@ -1,3 +1,4 @@
+requests
 oracledb
 pymysql
 psycopg2-binary
