@@ -17,7 +17,8 @@ The tool uses the oracledb, psycopg2 and pymysql packages to connect to the resp
 🔧 Network tools like ping ,iperf or tcp ping can only give you network based latency which does not always translate well to an application running those queries on a remote database. 
 
 
-🐍 DELTA uses Python client for Oracle, MySQL and PostgreSQL to run a query like “SELECT 1” or "SELECT 1 FROM DUAL". You can then specific the number of executions of the query and DELTA calculates the average network round-trip time for all the executions of the query on the remote database. The script also includes error handling to track failed requests. You can also include your own custom queries.
+🐍 DELTA uses Python client for Oracle, MySQL and PostgreSQL to run a query like “SELECT 1” or "SELECT 1 FROM DUAL". You can then specific the number of executions of the query and DELTA calculates the average network round-trip time for all the executions of the query on the remote database. The script also includes error handling to track failed requests. You can also include your own custom queries. 
+
 
 ## How it works
 The function 'measure_latency_oracle' uses the oracledb package to connect to the Oracle database and execute a single query per request. The function uses the time module to measure the time it takes to execute the query, fetch the results, and close the connection. The function then calculates the latency of each request and the average latency of all requests. The function opens a new connection for every request and closes it after fetching the results, which will measure the time it takes to execute the query, transfer the data over the network, and close the connection. The query parameter is passed to the function, allowing you to test the performance of the database with different queries. The same logic applies to the functions of mysql and postgres
@@ -58,6 +59,11 @@ The function 'measure_latency_oracle' uses the oracledb package to connect to th
 
 - On-premise Postgres
 
+
+📌 URL :
+
+- Check Public or Private URLs for latency
+
 # Requirements
 
 ```
@@ -91,10 +97,6 @@ The tool can be run using the command line. You will need to provide the followi
     "SQL QUERY" : The SQL query you want to test
 
 ## Run Autonomous Database Latency Check
-### Note
-
-- In case of Oracle Autonomous database, the connecting string can be found in OCI Console > Autonomous Database > DB Connection
-- Currently only non-mTLS connections are supported. mTLS with wallet should be available soon
 
 ```
 $ docker run -it delta python3 main.py \
@@ -106,6 +108,12 @@ YourP@ssw0rd \
 "SELECT 1 from DUAL"
 ```
 
+### Note
+
+- In case of Oracle Autonomous database, the connecting string can be found in OCI Console > Autonomous Database > DB Connection
+- Currently only non-mTLS connections are supported. mTLS with wallet should be available soon
+
+
 ## Run Oracle Database Latency Check
 
 ```
@@ -114,7 +122,7 @@ $ docker run -it delta python3 main.py \
   1 \
   hr \
   YourP@ssw0rd  \
-  'orcl11g-scan.********.demovcn.oraclevcn.com:1521/orcl11g.******.demovcn.oraclevcn.com' \
+  'host:port/servicename' \
   "SELECT 1 from DUAL" 
   ```
 
@@ -124,11 +132,11 @@ $ docker run -it delta python3 main.py \
 $ docker run -it delta python3 main.py \
 postgres \
 1 \
-postgres \
+admin \
 YourP@ssw0rd  \
 database-1.******ap-southeast-2.rds.amazonaws.com \
 5432 \
-demo \
+demodb \
 "SELECT 1"
 ```
 
@@ -142,10 +150,17 @@ admin \
 YourP@ssw0rd  \
 mysqldemo.c******ap-southeast-2.rds.amazonaws.com \
 3306 \
-demo \
+demodb \
 "SELECT 1"
 ```
 
+## URL Latency Check
+```
+docker run -it delta python3 main.py \
+url \
+10 \
+https://www.google.com
+```
 
 ## Check python-oracledb and Oracle Instantclient version
 ```
@@ -215,6 +230,14 @@ This function is used to measure the latency of a Postgres Database. It takes in
 
 It returns the average latency in seconds and milliseconds, the number of successful requests and any errors that occurred during the test.
 
+## measure_latency_url(url, num_requests)
+
+This function is used to measure the latency of a URL. The function accepts the URL as a string and the number of requests as an integer. It uses the requests module to make GET requests to the URL and the time module to measure the latency. It then calculates the average latency of all requests and prints the results. If any errors occur, they are added to the error_list and the error count is incremented. It takes in the following parameters:
+
+    url: The URL against which the latency is to be measure
+    num_requests: The number of requests to be made to the URL
+
+Note : The ssal verification flag is set to False to allow testing of private URL's. It is advised to turn on SSL verificaton by setting verify=True
  
 # Contributing
 
