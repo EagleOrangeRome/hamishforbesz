@@ -160,6 +160,9 @@ docker run -it delta python3 main.py \
 url \
 10 \
 https://www.google.com
+
+
+docker run -it delta python3 main.py url 1000 https://10.180.1.21:4443
 ```
 
 ## Check python-oracledb and Oracle Instantclient version
