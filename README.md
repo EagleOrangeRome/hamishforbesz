@@ -96,7 +96,7 @@ The tool can be run using the command line. You will need to provide the followi
     databasename : The name of the database
     "SQL QUERY" : The SQL query you want to test
 
-## Run Autonomous Database Latency Check
+## Autonomous Database Latency Check
 
 ```
 $ docker run -it delta python3 main.py \
@@ -114,7 +114,7 @@ YourP@ssw0rd \
 - Currently only non-mTLS connections are supported. mTLS with wallet should be available soon
 
 
-## Run Oracle Database Latency Check
+## Oracle Database Latency Check
 
 ```
 $ docker run -it delta python3 main.py \
@@ -126,7 +126,7 @@ $ docker run -it delta python3 main.py \
   "SELECT 1 from DUAL" 
   ```
 
-## Run Postgres Latency Check
+## Postgres Latency Check
 
 ```
 $ docker run -it delta python3 main.py \
@@ -140,7 +140,7 @@ demodb \
 "SELECT 1"
 ```
 
-## Run MySQL Latency Check
+## MySQL Latency Check
 
 ```
 $ docker run -it delta python3 main.py \
