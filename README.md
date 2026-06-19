@@ -98,6 +98,14 @@ The tool can be run using the command line. You will need to provide the followi
 
 ## Autonomous Database Latency Check
 
+By default, python-oracledb runs in a ‘Thin’ mode which connects directly to Oracle Database. This mode does not need Oracle Client libraries. However, some additional functionality is available when python-oracledb uses them. Python-oracledb is said to be in ‘Thick’ mode when Oracle Client libraries are used. Both modes have comprehensive functionality supporting the Python Database API v2.0 Specification.
+
+Please refer to the below links for more details to get better performance out of your connectivity to Oracle Database  : 
+
+[1] https://python-oracledb.readthedocs.io/en/latest/user_guide/connection_handling.html
+
+[2] https://download.oracle.com/ocomdocs/global/Application_Programming_Using_Pooling.pdf
+
 ```
 $ docker run -it delta python3 main.py \
 autonomous \
@@ -115,6 +123,14 @@ YourP@ssw0rd \
 
 
 ## Oracle Database Latency Check
+
+By default, python-oracledb runs in a ‘Thin’ mode which connects directly to Oracle Database. This mode does not need Oracle Client libraries. However, some additional functionality is available when python-oracledb uses them. Python-oracledb is said to be in ‘Thick’ mode when Oracle Client libraries are used. Both modes have comprehensive functionality supporting the Python Database API v2.0 Specification.
+
+Please refer to the below links for more details to get better performance out of your connectivity to Oracle Database  : 
+
+[1] https://python-oracledb.readthedocs.io/en/latest/user_guide/connection_handling.html
+
+[2] https://download.oracle.com/ocomdocs/global/Application_Programming_Using_Pooling.pdf
 
 ```
 $ docker run -it delta python3 main.py \
