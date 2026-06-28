@@ -100,6 +100,13 @@ The tool can be run using the command line. You will need to provide the followi
 
 By default, python-oracledb runs in a ‘Thin’ mode which connects directly to Oracle Database. This mode does not need Oracle Client libraries. However, some additional functionality is available when python-oracledb uses them. Python-oracledb is said to be in ‘Thick’ mode when Oracle Client libraries are used. Both modes have comprehensive functionality supporting the Python Database API v2.0 Specification.
 
+There are two ways to create a connection to Oracle Database using python-oracledb:
+
+    Standalone connections: Standalone connections are useful when the application needs a single connection to a database. Connections are created by calling oracledb.connect().
+
+    Pooled connections: Connection pooling is important for performance when applications frequently connect and disconnect from the database. Pools support Oracle’s high availability features and are recommended for applications that must be reliable. Small pools can also be useful for applications that want a few connections available for infrequent use. Pools are created with oracledb.create_pool() at application initialization time, and then ConnectionPool.acquire() can be called to obtain a connection from a pool.
+
+
 Please refer to the below links for more details to get better performance out of your connectivity to Oracle Database  : 
 
 [1] https://python-oracledb.readthedocs.io/en/latest/user_guide/connection_handling.html
@@ -125,6 +132,13 @@ YourP@ssw0rd \
 ## Oracle Database Latency Check
 
 By default, python-oracledb runs in a ‘Thin’ mode which connects directly to Oracle Database. This mode does not need Oracle Client libraries. However, some additional functionality is available when python-oracledb uses them. Python-oracledb is said to be in ‘Thick’ mode when Oracle Client libraries are used. Both modes have comprehensive functionality supporting the Python Database API v2.0 Specification.
+
+There are two ways to create a connection to Oracle Database using python-oracledb:
+
+    Standalone connections: Standalone connections are useful when the application needs a single connection to a database. Connections are created by calling oracledb.connect().
+
+    Pooled connections: Connection pooling is important for performance when applications frequently connect and disconnect from the database. Pools support Oracle’s high availability features and are recommended for applications that must be reliable. Small pools can also be useful for applications that want a few connections available for infrequent use. Pools are created with oracledb.create_pool() at application initialization time, and then ConnectionPool.acquire() can be called to obtain a connection from a pool.
+
 
 Please refer to the below links for more details to get better performance out of your connectivity to Oracle Database  : 
 
