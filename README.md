@@ -77,9 +77,9 @@ You can install and run DELTA as a Docker container
 Build from source
 
 ```
-$ git clone https://github.com/shadabshaukat/DELTA.git && cd DELTA/
+git clone https://github.com/shadabshaukat/DELTA.git && cd DELTA/
 
-$ docker build -t delta . --tag delta  --pull --no-cache --force-rm
+docker build -t delta . --tag delta  --pull --no-cache --force-rm
 
 ```
 
@@ -98,23 +98,8 @@ The tool can be run using the command line. You will need to provide the followi
 
 ## Autonomous Database Latency Check
 
-By default, python-oracledb runs in a ‘Thin’ mode which connects directly to Oracle Database. This mode does not need Oracle Client libraries. However, some additional functionality is available when python-oracledb uses them. Python-oracledb is said to be in ‘Thick’ mode when Oracle Client libraries are used. Both modes have comprehensive functionality supporting the Python Database API v2.0 Specification.
-
-There are two ways to create a connection to Oracle Database using python-oracledb:
-
-    Standalone connections: Standalone connections are useful when the application needs a single connection to a database. Connections are created by calling oracledb.connect().
-
-    Pooled connections: Connection pooling is important for performance when applications frequently connect and disconnect from the database. Pools support Oracle’s high availability features and are recommended for applications that must be reliable. Small pools can also be useful for applications that want a few connections available for infrequent use. Pools are created with oracledb.create_pool() at application initialization time, and then ConnectionPool.acquire() can be called to obtain a connection from a pool.
-
-
-Please refer to the below links for more details to get better performance out of your connectivity to Oracle Database  : 
-
-[1] https://python-oracledb.readthedocs.io/en/latest/user_guide/connection_handling.html
-
-[2] https://download.oracle.com/ocomdocs/global/Application_Programming_Using_Pooling.pdf
-
 ```
-$ docker run -it delta python3 main.py \
+docker run -it delta python3 main.py \
 autonomous \
 1 \
 admin \
@@ -131,6 +116,82 @@ YourP@ssw0rd \
 
 ## Oracle Database Latency Check
 
+
+```
+docker run -it delta python3 main.py \
+oracle \
+1 \
+hr \
+YourP@ssw0rd  \
+'host:port/servicename' \
+"SELECT 1 from DUAL" 
+ ```
+
+## Postgres Latency Check
+
+```
+docker run -it delta python3 main.py \
+postgres \
+1 \
+admin \
+YourP@ssw0rd  \
+database-1.******ap-southeast-2.rds.amazonaws.com \
+5432 \
+demodb \
+"SELECT 1"
+```
+
+## MySQL Latency Check
+
+```
+docker run -it delta python3 main.py \
+mysql \
+1 \
+admin \
+YourP@ssw0rd  \
+mysqldemo.c******ap-southeast-2.rds.amazonaws.com \
+3306 \
+demodb \
+"SELECT 1"
+```
+
+## URL Latency Check
+
+Public URL check
+```
+docker run -it delta python3 main.py \
+url \
+10 \
+https://www.google.com
+```
+
+Private URL check
+```
+docker run -it delta python3 main.py \
+url \
+1000 \
+https://10.180.1.21:4443
+```
+
+## Check python-oracledb and Oracle Instantclient version
+```
+docker run -it delta python3 -c "import oracledb; print(oracledb.version)"
+1.2.2
+```
+
+```
+docker run -it delta ls /usr/lib/oracle
+19.10
+```
+
+
+    
+
+
+# Function Definitions
+## measure_latency_oracle(user,password,dsn,num_requests,query)
+
+### Important Note on Oracle Database Python Package performance
 By default, python-oracledb runs in a ‘Thin’ mode which connects directly to Oracle Database. This mode does not need Oracle Client libraries. However, some additional functionality is available when python-oracledb uses them. Python-oracledb is said to be in ‘Thick’ mode when Oracle Client libraries are used. Both modes have comprehensive functionality supporting the Python Database API v2.0 Specification.
 
 There are two ways to create a connection to Oracle Database using python-oracledb:
@@ -145,73 +206,6 @@ Please refer to the below links for more details to get better performance out o
 [1] https://python-oracledb.readthedocs.io/en/latest/user_guide/connection_handling.html
 
 [2] https://download.oracle.com/ocomdocs/global/Application_Programming_Using_Pooling.pdf
-
-```
-$ docker run -it delta python3 main.py \
-  oracle \
-  1 \
-  hr \
-  YourP@ssw0rd  \
-  'host:port/servicename' \
-  "SELECT 1 from DUAL" 
-  ```
-
-## Postgres Latency Check
-
-```
-$ docker run -it delta python3 main.py \
-postgres \
-1 \
-admin \
-YourP@ssw0rd  \
-database-1.******ap-southeast-2.rds.amazonaws.com \
-5432 \
-demodb \
-"SELECT 1"
-```
-
-## MySQL Latency Check
-
-```
-$ docker run -it delta python3 main.py \
-mysql \
-1 \
-admin \
-YourP@ssw0rd  \
-mysqldemo.c******ap-southeast-2.rds.amazonaws.com \
-3306 \
-demodb \
-"SELECT 1"
-```
-
-## URL Latency Check
-```
-docker run -it delta python3 main.py \
-url \
-10 \
-https://www.google.com
-
-
-docker run -it delta python3 main.py url 1000 https://10.180.1.21:4443
-```
-
-## Check python-oracledb and Oracle Instantclient version
-```
-$ docker run -it delta python3 -c "import oracledb; print(oracledb.version)"
-1.2.2
-```
-
-```
-$ docker run -it delta ls /usr/lib/oracle
-19.10
-```
-
-
-    
-
-
-# Function Definitions
-## measure_latency_oracle(user,password,dsn,num_requests,query)
 
 This function is used to measure the latency of an Oracle database. It takes in the following parameters:
 
