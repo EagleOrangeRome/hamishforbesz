@@ -96,7 +96,10 @@ The tool can be run using the command line. You will need to provide the followi
     databasename : The name of the database
     "SQL QUERY" : The SQL query you want to test
 
-## Autonomous Database Latency Check
+## Autonomous Database Latency Check using SQL Query
+
+#### Note : This option uses python-oracledb package in thick mode
+
 
 ```
 docker run -it delta python3 main.py \
@@ -108,14 +111,15 @@ YourP@ssw0rd \
 "SELECT 1 from DUAL"
 ```
 
-### Note
+#### Note
 
 - In case of Oracle Autonomous database, the connecting string can be found in OCI Console > Autonomous Database > DB Connection
 - Currently only non-mTLS connections are supported. mTLS with wallet should be available soon
 
 
-## Oracle Database Latency Check
+## Oracle Database Latency Check using SQL Query
 
+#### Note : This option uses python-oracledb package in thick mode
 
 ```
 docker run -it delta python3 main.py \
@@ -125,6 +129,27 @@ hr \
 YourP@ssw0rd  \
 'host:port/servicename' \
 "SELECT 1 from DUAL" 
+ ```
+ 
+ 
+ ## Oracle Database Latency Check using OCIping()
+
+We can use the ping() [1] function in python-oracledb package which is a wrapper around OCIPing() function [2] 
+
+#### Note : This option uses the Oracle Python driver in thick mode and can only be used for Non-Autonomous Oracle Database. It does not require a SQL query but sends multiple requests using connection.ping() method
+
+[1] https://python-oracledb.readthedocs.io/en/latest/api_manual/connection.html#Connection.ping
+
+[2] https://docs.oracle.com/en/database/oracle/oracle-database/19/lnoci/miscellaneous-functions.html#GUID-033BF96D-D88D-4F18-909A-3AB7C2F6C70F
+
+
+```
+ docker run -it delta python3 main.py \
+ ociping \
+ 100 \
+ hr \
+ YourP@ssw0rd   \
+ 'host:port/servicename' 
  ```
 
 ## Postgres Latency Check
