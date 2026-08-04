@@ -93,6 +93,44 @@ def measure_latency_autonomous(user,password,dsn,num_requests,query):
         print("No Successful requests were made, Error List: ", error_list)
 
 
+def measure_latency_ociping(user,password,dsn,num_requests):
+    total_latency = 0
+    success_count = 0
+    error_count = 0
+    error_list = []
+    num_requests = int(num_requests)
+    for i in range(num_requests):
+        try:
+            # Connect to Oracle
+            oracledb.init_oracle_client()
+            start_time = time.time()
+            connection = oracledb.connect(user=user, password=password, dsn=dsn)
+            pingoci = connection.ping()
+            end_time = time.time()
+            connection.close()
+
+            # Calculate the latency
+            latency = end_time - start_time
+            total_latency += latency
+            success_count += 1
+        except oracledb.Error as e:
+            print("Cannot connect to Oracle Instance")
+            error_count += 1
+            error_list.append(e)
+    if success_count > 0:
+        avg_latency = total_latency / success_count
+        # Print the average latency
+        print("## Oracle Latency ##")
+        print("Average Latency in Seconds:", avg_latency)
+        print("Average Latency in Milliseconds:", avg_latency*1000)
+        print("Successful requests: ", success_count)
+        if error_count > 0:
+            print("Unsuccessful requests: ", error_count)
+            print("Error List: ", error_list)
+        return avg_latency
+    else:
+        print("No Successful requests were made, Error List: ", error_list)
+
 def measure_latency_mysql(user,password,host,port,database,num_requests,query):
     total_latency = 0
     success_count = 0
@@ -227,6 +265,11 @@ else:
         dsn = sys.argv[5]
         query = sys.argv[6]
         measure_latency_autonomous(user,password,dsn,num_requests,query)
+    elif db_type == "ociping":
+        user = sys.argv[3]
+        password = sys.argv[4]
+        dsn = sys.argv[5]
+        measure_latency_ociping(user,password,dsn,num_requests)
     elif db_type == "mysql":
         user = sys.argv[3]
         password = sys.argv[4]
@@ -247,4 +290,4 @@ else:
         url = sys.argv[3]
         measure_latency_url(url,num_requests)
     else:
-        print("Invalid dbtype specified. Please enter 'oracle', 'autonomous' , 'mysql' ,  'postgres'  or  'url'.")
+        print("Invalid dbtype specified. Please enter 'oracle', 'autonomous', 'ociping', 'mysql',  'postgres'  or  'url'.")
