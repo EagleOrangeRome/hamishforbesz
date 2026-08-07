@@ -111,8 +111,6 @@ YourP@ssw0rd \
 "SELECT 1 from DUAL"
 ```
 
-#### Note
-
 - In case of Oracle Autonomous database, the connecting string can be found in OCI Console > Autonomous Database > DB Connection
 - Currently only non-mTLS connections are supported. mTLS with wallet should be available soon
 
@@ -134,13 +132,7 @@ YourP@ssw0rd  \
  
  ## Oracle Database Latency Check using OCIping()
 
-We can use the ping() [1] function in python-oracledb package which is a wrapper around OCIPing() function [2] 
-
 #### Note : This option uses the Oracle Python driver in thick mode and can only be used for Non-Autonomous Oracle Database. It does not require a SQL query but sends multiple requests using connection.ping() method
-
-[1] https://python-oracledb.readthedocs.io/en/latest/api_manual/connection.html#Connection.ping
-
-[2] https://docs.oracle.com/en/database/oracle/oracle-database/19/lnoci/miscellaneous-functions.html#GUID-033BF96D-D88D-4F18-909A-3AB7C2F6C70F
 
 
 ```
@@ -151,6 +143,13 @@ We can use the ping() [1] function in python-oracledb package which is a wrapper
  YourP@ssw0rd   \
  'host:port/servicename' 
  ```
+ 
+This function uses ping() [1] in python-oracledb thick mode which is a wrapper around OCIPing() function [2] 
+
+[1] https://python-oracledb.readthedocs.io/en/latest/api_manual/connection.html#Connection.ping
+
+[2] https://docs.oracle.com/en/database/oracle/oracle-database/19/lnoci/miscellaneous-functions.html#GUID-033BF96D-D88D-4F18-909A-3AB7C2F6C70F
+
 
 ## Postgres Latency Check
 
@@ -214,7 +213,6 @@ docker run -it delta ls /usr/lib/oracle
 
 
 # Function Definitions
-## measure_latency_oracle(user,password,dsn,num_requests,query)
 
 ### Important Note on Oracle Database Python Package performance
 By default, python-oracledb runs in a ‘Thin’ mode which connects directly to Oracle Database. This mode does not need Oracle Client libraries. However, some additional functionality is available when python-oracledb uses them. Python-oracledb is said to be in ‘Thick’ mode when Oracle Client libraries are used. Both modes have comprehensive functionality supporting the Python Database API v2.0 Specification.
@@ -232,7 +230,9 @@ Please refer to the below links for more details to get better performance out o
 
 [2] https://download.oracle.com/ocomdocs/global/Application_Programming_Using_Pooling.pdf
 
-This function is used to measure the latency of an Oracle database. It takes in the following parameters:
+## measure_latency_oracle(user,password,dsn,num_requests,query)
+
+This function is used to measure the latency of an Oracle database in thick mode. It takes in the following parameters:
 
     user: The username to connect to the Oracle database.
     password: The password to connect to the Oracle database.
@@ -244,7 +244,7 @@ It returns the average latency in seconds and milliseconds, the number of succes
 
 ## measure_latency_autonomous(user,password,dsn,num_requests,query)
 
-This function is used to measure the latency of an Oracle Autonomous Database with TLS (mTLS currently isn't supported). It takes in the following parameters:
+This function is used to measure the latency of an Oracle Autonomous Database with TLS (mTLS currently isn't supported) in thin mode. It takes in the following parameters:
 
     user: The username to connect to the Autonomous database.
     password: The password to connect to the Autonomous database.
@@ -253,6 +253,17 @@ This function is used to measure the latency of an Oracle Autonomous Database wi
     query: The SQL query to be executed on the database.
 
 It returns the average latency in seconds and milliseconds, the number of successful requests and any errors that occurred during the test. 
+
+## measure_latency_ociping(user,password,dsn,num_requests)
+
+This function is used to measure the latency of an Oracle database in thick mode. It uses the ping() function in python-oracledb package and takes in the following parameters:
+
+    user: The username to connect to the Oracle database.
+    password: The password to connect to the Oracle database.
+    dsn: The hostname and portnumber/servicename of the Oracle database.
+    num_requests: The number of requests to be made to the database.
+
+It returns the average latency in seconds and milliseconds, the number of successful requests and any errors that occurred during the test.
 
 ## measure_latency_mysql(user,password,host,port,database,num_requests,query)
 
