@@ -98,7 +98,7 @@ The tool can be run using the command line. You will need to provide the followi
 
 ## Autonomous Database Latency Check using SQL Query
 
-#### Note : This option uses python-oracledb package in thick mode
+#### Note : This option uses python-oracledb package in thin mode
 
 
 ```
