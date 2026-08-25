@@ -25,6 +25,9 @@ The function 'measure_latency_oracle' uses the oracledb package to connect to th
 
 🔌 Databases Supported :
 
+![image](https://user-images.githubusercontent.com/39692236/215261248-336bcc14-8e45-409e-abb2-b71cdff490f2.png)
+
+
  📌 Oracle : 
 
 - Amazon RDS Oracle
