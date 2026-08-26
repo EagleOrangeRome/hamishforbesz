@@ -233,6 +233,12 @@ Please refer to the below links for more details to get better performance out o
 
 [2] https://download.oracle.com/ocomdocs/global/Application_Programming_Using_Pooling.pdf
 
+## Local Install of Python Packages
+
+```
+ pip3 install -r requirements.txt
+ ```
+
 ## measure_latency_oracle(user,password,dsn,num_requests,query)
 
 This function is used to measure the latency of an Oracle database in thick mode. It takes in the following parameters:
@@ -244,6 +250,20 @@ This function is used to measure the latency of an Oracle database in thick mode
     query: The SQL query to be executed on the database.
 
 It returns the average latency in seconds and milliseconds, the number of successful requests and any errors that occurred during the test. 
+
+eg :
+
+```
+ python3 main.py \
+ oracle \
+ 100 \
+ redis \
+ YourP@ssw0rd \
+ 'host:port/servicename' \
+ "SELECT 1 from DUAL"
+```
+
+
 
 ## measure_latency_autonomous(user,password,dsn,num_requests,query)
 
@@ -257,6 +277,7 @@ This function is used to measure the latency of an Oracle Autonomous Database wi
 
 It returns the average latency in seconds and milliseconds, the number of successful requests and any errors that occurred during the test. 
 
+
 ## measure_latency_ociping(user,password,dsn,num_requests)
 
 This function is used to measure the latency of an Oracle database in thick mode. It uses the ping() function in python-oracledb package and takes in the following parameters:
@@ -267,6 +288,17 @@ This function is used to measure the latency of an Oracle database in thick mode
     num_requests: The number of requests to be made to the database.
 
 It returns the average latency in seconds and milliseconds, the number of successful requests and any errors that occurred during the test.
+
+eg :
+
+```
+python3 main.py \
+ociping  \
+100  \
+hr  \
+YourP@ssw0rd \
+'host:port/servicename' \
+```
 
 ## measure_latency_mysql(user,password,host,port,database,num_requests,query)
 
@@ -282,6 +314,20 @@ This function is used to measure the latency of a MySQL Database. It takes in th
 
 It returns the average latency in seconds and milliseconds, the number of successful requests and any errors that occurred during the test. 
 
+eg :
+
+```
+python3 main.py \
+mysql \
+1 \
+admin \
+YourP@ssw0rd  \
+mysqldemo.c******ap-southeast-2.rds.amazonaws.com \
+3306 \
+demodb \
+"SELECT 1"
+```
+
 ##  measure_latency_postgres(user, password, host, port, dbname, num_requests, query)
 
 This function is used to measure the latency of a Postgres Database. It takes in the following parameters:
@@ -296,6 +342,20 @@ This function is used to measure the latency of a Postgres Database. It takes in
 
 It returns the average latency in seconds and milliseconds, the number of successful requests and any errors that occurred during the test.
 
+eg :
+
+```
+python3 main.py \
+postgres \
+1 \
+admin \
+YourP@ssw0rd  \
+database-1.******ap-southeast-2.rds.amazonaws.com \
+5432 \
+demodb \
+"SELECT 1"
+```
+
 ## measure_latency_url(url, num_requests)
 
 This function is used to measure the latency of a URL. The function accepts the URL as a string and the number of requests as an integer. It uses the requests module to make GET requests to the URL and the time module to measure the latency. It then calculates the average latency of all requests and prints the results. If any errors occur, they are added to the error_list and the error count is incremented. It takes in the following parameters:
@@ -304,6 +364,15 @@ This function is used to measure the latency of a URL. The function accepts the 
     num_requests: The number of requests to be made to the URL
 
 Note : The ssal verification flag is set to False to allow testing of private URL's. It is advised to turn on SSL verificaton by setting verify=True
+
+eg :
+
+```
+python3 main.py \
+url \
+10 \
+https://www.google.com
+```
  
 # Contributing
 
